@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhijit Kapse - Wildlife & Visual Storytelling Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --forest-dark: #1A2E1A;
+            --forest-medium: #2C4A2C;
+            --forest-light: #3D5A3D;
+            --gold: #D4AF37;
+            --gold-light: #E8C468;
+            --cream: #FFF8E7;
+            --white: #FFFFFF;
+            --charcoal: #1C1C1C;
+            --warmgray: #8B7D6B;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--cream);
+            background: var(--forest-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes goldGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 46, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            height: 60px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        nav img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--cream);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--forest-dark);
+            background: var(--gold);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--gold);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--forest-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--gold-light);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-showcase {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo-showcase img {
+            max-width: 600px;
+            height: auto;
+            animation: fadeInUp 1s ease-out;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo-showcase img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.9));
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-header.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--cream);
+        }
+
+
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--gold-light);
+            margin: 20px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid var(--gold);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .gallery-item.visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold-light);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .intro {
+            background: var(--forest-medium);
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-content img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .intro-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .video-section {
+            background: var(--forest-light);
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-container video {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .about {
+            background: var(--forest-medium);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.5);
+            border: 5px solid var(--gold);
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--forest-light);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid var(--gold);
+            color: var(--cream);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact {
+            background: var(--forest-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: var(--forest-medium);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--cream);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            background: var(--forest-dark);
+            color: var(--cream);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: var(--forest-dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--forest-medium);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 2px solid var(--gold);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .info-content a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .info-content a:hover {
+            color: var(--gold);
+        }
+
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            min-width: 300px;
+            min-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+            border: 3px solid var(--gold);
+            animation: zoomIn 0.3s ease-out;
+            object-fit: contain;
+            display: block;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: var(--gold);
+            cursor: pointer;
+            background: rgba(26, 46, 26, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gold);
+            transition: all 0.3s;
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            color: var(--forest-dark);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: var(--gold);
+            cursor: pointer;
+            background: rgba(26, 46, 26, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gold);
+            transition: all 0.3s;
+            z-index: 10001;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: var(--forest-dark);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--cream);
+            font-size: 1.2rem;
+            background: rgba(26, 46, 26, 0.9);
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            z-index: 10001;
+        }
+        
+        /* IMAGE PROTECTION STYLES */
+        .gallery-item::after {
+            content: '© AK Wildlife Frames';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+            pointer-events: none;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            z-index: 10;
+            font-weight: 500;
+        }
+        
+        img {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+        
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Allow text selection for reading */
+        p, h1, h2, h3, h4, h5, h6, span, a, li, label, input, textarea, button {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .intro-content,
+            .about-content,
+            .contact-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <img src="photos/logo1.png" alt="AK Wildlife Frames">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#wildlife">Wildlife</a></li>
+                <li><a href="#visual">Visual Stories</a></li>
+                <li><a href="#macro">Macro</a></li>
+                <li><a href="#bts">Behind the Lens</a></li>
+                <li><a href="#landscape">Landscape</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>Capturing the Wild,<br>Framing the Moment</h1>
+            <h2>Wildlife & Visual Storytelling by Abhijit Kapse</h2>
+            <a href="#wildlife" class="btn"><span>Explore My Work ↓</span></a>
+        </div>
+    </section>
+
+    <section class="intro">
+        <div class="container">
+            <div class="intro-content">
+                <div>
+                    <img src="photos/w23.jpg" alt="Wildlife Photography">
+                </div>
+                <div class="intro-text">
+                    <h3>18 Years Behind the Lens</h3>
+                    <p>Since 2007, I've dedicated my craft to documenting the untamed beauty of India's wildlife and the authentic moments that define our cultural heritage. With over 3,000 captures spanning dense forests, coastal landscapes, and vibrant streets, my work tells stories that words cannot express.</p>
+                    <p>Through AK Wildlife Frames and Abhee Visuals, I invite you to experience nature's magnificence and humanity's essence—one extraordinary frame at a time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wildlife">
+        <div class="container">
+            <div class="logo-showcase">
+                <img src="photos/logo1.png" alt="AK Wildlife Frames">
+                <p class="tagline">"Where Nature Meets Artistry"</p>
+            </div>
+
+            <div class="gallery-grid" id="wildlifeGallery">
+                <div class="gallery-item visible"><img src="photos/w01.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w02.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w03.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w04.png" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w05.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w06.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w07.png" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w08.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w09.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w10.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w11.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w12.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w13.jpeg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w14.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w15.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w16.JPG" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w17.jpeg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w18.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w19.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w20.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w21.JPG" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w22.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w23.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w24.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w25.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w26.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w27.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w28.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w29.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w30.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w31.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w32.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w33.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w34.JPG" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w35.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w36.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w37.JPG" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w38.jpg" alt="Wildlife" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/w39.jpg" alt="Wildlife" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Wildlife in Motion</h2>
+                <p>Cinematic wildlife moments captured in stunning detail</p>
+            </div>
+            <div class="video-container">
+                <video controls autoplay muted loop playsinline style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                    <source src="photos/wildlife-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p style="text-align: center; margin-top: 20px; color: var(--cream); font-style: italic;">
+                    Professional wildlife cinematography by AK Wildlife Frames
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visual">
+        <div class="container">
+            <div class="logo-showcase">
+                <img src="photos/logo2.png" alt="Abhee Visuals">
+                <p class="tagline">"Stories Through the Streets"</p>
+            </div>
+
+            <div class="gallery-grid" id="visualGallery">
+                <div class="gallery-item visible"><img src="photos/v01.jpeg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v02.jpeg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v03.JPG" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v04.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v05.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v06.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v07.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v08.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v09.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v10.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v11.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v12.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v13.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v14.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v15.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v16.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v17.png" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v18.png" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v19.JPG" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v20.jpeg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v21.jpeg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v22.jpeg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v23.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v24.jpg" alt="Visual Story" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/v25.jpg" alt="Visual Story" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="macro">
+        <div class="container">
+            <div class="section-header">
+                <h2>Macro Photography</h2>
+                <p>Discovering beauty in the smallest details</p>
+            </div>
+
+            <div class="gallery-grid" id="macroGallery">
+                <div class="gallery-item visible"><img src="photos/m01.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m02.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m03.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m04.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m05.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m06.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m07.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m08.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m09.jpeg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m10.JPG" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m11.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m12.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m13.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m14.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m15.JPG" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m16.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m17.jpg" alt="Macro" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/m18.jpg" alt="Macro" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEHIND THE LENS -->
+    <section id="bts" style="background: var(--forest-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Behind the Lens</h2>
+                <p>Dedication, patience, and passion in every shot</p>
+            </div>
+
+            <div class="gallery-grid" id="btsGallery">
+                <div class="gallery-item visible"><img src="photos/bts-01.jpg" alt="Behind the Scenes" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/bts-02.jpg" alt="Behind the Scenes" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/bts-03.jpg" alt="Behind the Scenes" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/bts-04.jpg" alt="Behind the Scenes" loading="lazy"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 1.2rem; color: var(--cream); max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    From early morning safaris to wading through waters, wildlife photography demands unwavering dedication. These moments capture the passion, patience, and sometimes extreme conditions behind every frame you see in my portfolio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LANDSCAPE PHOTOGRAPHY SECTION -->
+    <section id="landscape">
+        <div class="container">
+            <div class="section-header">
+                <h2>Landscape Photography</h2>
+                <p>Nature's grandeur captured in breathtaking vistas</p>
+            </div>
+
+            <div class="gallery-grid" id="landscapeGallery">
+                <div class="gallery-item visible"><img src="photos/l01.jpg" alt="Landscape" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/l02.jpg" alt="Landscape" loading="lazy"></div>
+                <div class="gallery-item visible"><img src="photos/l03.jpg" alt="Landscape" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Abhijit</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="photos/profile.jpg" alt="Abhijit Siddappa Kapse">
+                </div>
+                <div class="about-text">
+                    <h3>The Journey</h3>
+                    <p>My journey with photography began in 2007 when I first picked up a camera in the forests of Maharashtra. What started as curiosity evolved into a lifelong passion for documenting the extraordinary diversity of India's wildlife and cultural tapestry.</p>
+                    <p>Over the past 18 years, I've traveled extensively across India's most pristine ecosystems—from the tiger reserves of Central India to the Western Ghats' biodiversity hotspots.</p>
+                    <p>🦅 <strong>AK Wildlife Frames</strong> celebrates the wild—from macro insects to apex predators.</p>
+                    <p>📸 <strong>Abhee Visuals</strong> captures the human experience through cultural documentation and travel photography.</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">📷</div>
+                    <h4>18+ Years</h4>
+                    <p>Experience</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🖼️</div>
+                    <h4>3000+</h4>
+                    <p>Captures</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <h4>Across India</h4>
+                    <p>Locations</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌿</div>
+                    <h4>Conservation</h4>
+                    <p>Focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/xnjnpejk" method="POST" id="contactForm">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                        <div id="formStatus" style="margin-top: 15px; padding: 10px; border-radius: 8px; display: none;"></div>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <a href="/cdn-cgi/l/email-protection#40212228292a2525342b213033256e737100272d21292c6e232f2d"><span class="__cf_email__" data-cfemail="7c1d1e141516191908171d0c0f19524f4d3c1b111d1510521f1311">[email&#160;protected]</span></a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>Location</h4>
+                            <p>Maharashtra, India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📷</div>
+                        <div class="info-content">
+                            <h4>Instagram</h4>
+                            <a href="https://www.instagram.com/akwildlifeframes" target="_blank">@akwildlifeframes</a><br>
+                            <a href="https://www.instagram.com/abheevisuals" target="_blank">@abheevisuals</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Abhijit Siddappa Kapse. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close-btn">&times;</span>
+        <div class="lightbox-nav lightbox-prev" id="lightbox-prev-btn">&#8249;</div>
+        <div class="lightbox-nav lightbox-next" id="lightbox-next-btn">&#8250;</div>
+        <img id="lightbox-img" src="">
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎉 Page loaded! Photos are hardcoded in HTML - they WILL show!');
+        
+        // IMAGE PROTECTION FEATURES
+        // Disable right-click on images
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Prevent image drag
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Block keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S (Save)
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+P (Print)
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            // Cmd+S (Mac Save)
+            if (e.metaKey && e.key === 's') {
+                e.preventDefault();
+                return false;
+            }
+            // Cmd+P (Mac Print)
+            if (e.metaKey && e.key === 'p') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Copyright notice in console
+        console.log('%c⚠️ COPYRIGHT NOTICE ⚠️', 'font-size: 20px; color: #D4AF37; font-weight: bold;');
+        console.log('%cAll images © Abhijit Siddappa Kapse', 'font-size: 14px; color: #FFF8E7;');
+        console.log('%cUnauthorized use is prohibited', 'font-size: 14px; color: #FFF8E7;');
+        console.log('%cContact: abhijeetkapse.31@gmail.com', 'font-size: 14px; color: #D4AF37;');
+        
+        // Lightbox variables
+        let allImages = [];
+        let currentImageIndex = 0;
+
+        // Collect all images after galleries are populated
+        function initializeLightbox() {
+            allImages = [];
+            // Collect from all galleries
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                allImages.push(img.src);
+            });
+            console.log('✅ Lightbox initialized with', allImages.length, 'images');
+        }
+        
+        // Add click handlers to all hardcoded images
+        function addClickHandlers() {
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openLightbox(this.src);
+                });
+            });
+            console.log('✅ Click handlers added to all images');
+        }
+        
+        // Initialize everything immediately for hardcoded images
+        initializeLightbox();
+        addClickHandlers();
+
+        function openLightbox(src) {
+            // Make sure allImages is populated
+            if (allImages.length === 0) {
+                initializeLightbox();
+            }
+
+            currentImageIndex = allImages.indexOf(src);
+
+            // If image not found, default to 0
+            if (currentImageIndex === -1) {
+                console.error('Image not found in allImages array:', src);
+                currentImageIndex = 0;
+            }
+
+            showLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+
+            // Loop around
+            if (currentImageIndex < 0) {
+                currentImageIndex = allImages.length - 1;
+            } else if (currentImageIndex >= allImages.length) {
+                currentImageIndex = 0;
+            }
+
+            showLightboxImage();
+        }
+
+        function showLightboxImage() {
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+
+            if (allImages.length > 0 && allImages[currentImageIndex]) {
+                img.src = allImages[currentImageIndex];
+                img.style.display = 'block';
+                counter.textContent = `${currentImageIndex + 1} / ${allImages.length}`;
+            } else {
+                console.error('No images available or invalid index:', currentImageIndex);
+                counter.textContent = `0 / 0`;
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
+        });
+        
+        // Button click handlers for lightbox
+        const lightboxElement = document.getElementById('lightbox');
+        const closeBtn = document.getElementById('lightbox-close-btn');
+        const prevBtn = document.getElementById('lightbox-prev-btn');
+        const nextBtn = document.getElementById('lightbox-next-btn');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        // Close button
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+        
+        // Close when clicking background (but not the image)
+        lightboxElement.addEventListener('click', function(e) {
+            if (e.target === lightboxElement) {
+                closeLightbox();
+            }
+        });
+        
+        // Previous button
+        prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateLightbox(-1);
+        });
+        
+        // Next button
+        nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateLightbox(1);
+        });
+        
+        // Prevent image click from closing lightbox
+        lightboxImg.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        console.log('✅ Lightbox button handlers added!');
+
+        // Reinitialize lightbox after a delay as backup (already initialized after gallery creation)
+        setTimeout(function() {
+            if (allImages.length === 0) {
+                initializeLightbox();
+            }
+        }, 1000);
+
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe section headers
+        document.querySelectorAll('.section-header').forEach(header => {
+            observer.observe(header);
+        });
+
+        // Observe gallery items with stagger effect
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.05}s`;
+            observer.observe(item);
+        });
+
+        // Add smooth reveal to intro and about sections
+        const contentSections = document.querySelectorAll('.intro-content, .about-content, .video-container');
+        contentSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        const contentObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        contentSections.forEach(section => {
+            contentObserver.observe(section);
+        });
+        
+        // Contact Form Handler
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                // Let Formspree handle the submission naturally
+                // But we'll show a loading state
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Formspree will redirect to their default success page
+                // Or you can handle it with AJAX if you prefer
+            });
+        }
+
+        }); // End DOMContentLoaded
+    </script>
+</body>
+</html>
